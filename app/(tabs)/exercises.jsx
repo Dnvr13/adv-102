@@ -1,30 +1,42 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
-import HTMLView from "react-native-htmlview";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
 export default function Exercise() {
+    const router = useRouter(); // Hook for navigation
+
     const exercises = [
-        { title: 'onLinkPress:', description: 'a function which will be called with a url when a link is pressed. Passing this prop will override how links are handled (defaults to calling Linking.openURL(url))' },
-        { title: 'onLinkLongPress:', description: 'a function which will be called with a url when a link is long pressed. The default is null.' },
-        { title: 'stylesheet:', description: 'a stylesheet object keyed by tag name, which will override the styles applied to those respective tags.' },
-        { title: 'bullet:', description: 'text which is rendered before every li inside a ul' },
-        { title: 'paragraphBreak:', description: 'text which appears after every p element' },
+        { title: "onLinkPress:", description: "Handles link presses and overrides default behavior." },
+        { title: "onLinkLongPress:", description: "Handles long presses on links, default is null." },
+        { title: "stylesheet:", description: "Overrides the styles for HTML elements." },
+        { title: "bullet:", description: "Text rendered before every list item." },
     ];
 
     return (
         <ScrollView style={styles.container}>
             {exercises.map((exercise, index) => (
-                <View key={index} style={styles.card}>
+                <TouchableOpacity 
+                    key={index} 
+                    style={styles.card} 
+                    onPress={() => {
+                        if (index === 0) router.push("/login"); // Navigate to login when first exercise is clicked
+                    }}
+                >
                     <Text style={styles.title}>{exercise.title}</Text>
-                    <HTMLView value={`<p>${exercise.description}</p>`} stylesheet={htmlStyles} />
-                </View>
+                    <Text style={styles.description}>{exercise.description}</Text>
+                </TouchableOpacity>
             ))}
+            
+            <TouchableOpacity style={styles.loginCard} onPress={() => router.push("/login")}>
+                <Text style={styles.loginTitle}>Login</Text>
+                <Text style={styles.loginDescription}>Access your account by logging in.</Text>
+            </TouchableOpacity>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#1a1a1a", 
         padding: 20,
     },
     card: {
@@ -32,10 +44,6 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         marginBottom: 15,
-        shadowColor: "#000",
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.7,
-        shadowRadius: 5,
         borderWidth: 1,
         borderColor: "#5a4b3b",
     },
@@ -45,8 +53,26 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 5,
     },
-});
-
-const htmlStyles = StyleSheet.create({
-    p: { color: "#c0aa6b", fontSize: 16 }, 
+    description: {
+        fontSize: 16,
+        color: "#c0aa6b",
+    },
+    loginCard: {
+        backgroundColor: "#3b2c1a",
+        padding: 15,
+        borderRadius: 10,
+        marginTop: 20,
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#5a4b3b",
+    },
+    loginTitle: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#e1c16e",
+    },
+    loginDescription: {
+        fontSize: 16,
+        color: "#c0aa6b",
+    },
 });
