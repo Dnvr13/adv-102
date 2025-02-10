@@ -2,7 +2,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-nati
 import { useRouter } from "expo-router";
 
 export default function Exercise() {
-    const router = useRouter(); // Hook for navigation
+    const router = useRouter();
 
     const exercises = [
         { title: "onLinkPress:", description: "Handles link presses and overrides default behavior." },
@@ -18,7 +18,7 @@ export default function Exercise() {
                     key={index} 
                     style={styles.card} 
                     onPress={() => {
-                        if (index === 0) router.push("/login"); // Navigate to login when first exercise is clicked
+                        if (index === 0) router.push("/login"); 
                     }}
                 >
                     <Text style={styles.title}>{exercise.title}</Text>
