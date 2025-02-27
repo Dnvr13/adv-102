@@ -35,6 +35,11 @@ export default function Exercise() {
                 <Text style={styles.loginTitle}>Login</Text>
                 <Text style={styles.loginDescription}>Access your account by logging in.</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.registerCard} onPress={() => router.push("/register")}>
+                <Text style={styles.registerTitle}>Register</Text>
+                <Text style={styles.registerDescription}>Create an account to get started.</Text>
+            </TouchableOpacity>
             
         </ScrollView>
     );
@@ -96,6 +101,24 @@ const styles = StyleSheet.create({
         color: "#91c499",
     },
     stopwatchDescription: {
+        fontSize: 16,
+        color: "#c0aa6b",
+    },
+    registerCard: {
+        backgroundColor: "#2e4b3a",
+        padding: 15,
+        borderRadius: 10,
+        marginTop: 20,
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#5a4b3b",
+    },
+    registerTitle: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#e1c16e",
+    },
+    registerDescription: {
         fontSize: 16,
         color: "#c0aa6b",
     },

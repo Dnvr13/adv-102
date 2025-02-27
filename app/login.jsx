@@ -1,16 +1,23 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
-export default function Login() {
+export default function LoginScreen() {
+    const router = useRouter();
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Login</Text>
             <Text style={styles.description}>Enter your credentials to access your account.</Text>
-            
+
             <TextInput placeholder="Email" placeholderTextColor="#c0aa6b" style={styles.input} />
             <TextInput placeholder="Password" placeholderTextColor="#c0aa6b" style={styles.input} secureTextEntry />
 
-            <TouchableOpacity style={styles.loginButton}>
-                <Text style={styles.loginButtonText}>Login</Text>
+            <TouchableOpacity style={styles.authButton}>
+                <Text style={styles.authButtonText}>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => router.push("/register")} style={styles.toggleButton}>
+                <Text style={styles.toggleButtonText}>Don't have an account? Register</Text>
             </TouchableOpacity>
         </View>
     );
@@ -45,16 +52,24 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#5a4b3b",
     },
-    loginButton: {
+    authButton: {
         backgroundColor: "#5a4b3b",
         padding: 15,
         borderRadius: 10,
         alignItems: "center",
         marginTop: 10,
     },
-    loginButtonText: {
+    authButtonText: {
         color: "#e1c16e",
         fontSize: 18,
         fontWeight: "bold",
+    },
+    toggleButton: {
+        marginTop: 15,
+        alignItems: "center",
+    },
+    toggleButtonText: {
+        color: "#c0aa6b",
+        fontSize: 14,
     },
 });
