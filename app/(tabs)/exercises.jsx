@@ -26,10 +26,16 @@ export default function Exercise() {
                 </TouchableOpacity>
             ))}
             
+            <TouchableOpacity style={styles.stopwatchCard} onPress={() => router.push("/stopwatch")}>
+                <Text style={styles.stopwatchTitle}>Stopwatch</Text>
+                <Text style={styles.stopwatchDescription}>Track your time with stopwatch.</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity style={styles.loginCard} onPress={() => router.push("/login")}>
                 <Text style={styles.loginTitle}>Login</Text>
                 <Text style={styles.loginDescription}>Access your account by logging in.</Text>
             </TouchableOpacity>
+            
         </ScrollView>
     );
 }
@@ -72,6 +78,24 @@ const styles = StyleSheet.create({
         color: "#e1c16e",
     },
     loginDescription: {
+        fontSize: 16,
+        color: "#c0aa6b",
+    },
+    stopwatchCard: {
+        backgroundColor: "#2e3b3a",
+        padding: 15,
+        borderRadius: 10,
+        marginTop: 20,
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#4a6b6a",
+    },
+    stopwatchTitle: {
+        fontSize: 22,
+        fontWeight: "bold",
+        color: "#91c499",
+    },
+    stopwatchDescription: {
         fontSize: 16,
         color: "#c0aa6b",
     },
